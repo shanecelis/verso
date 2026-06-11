@@ -157,6 +157,7 @@ the right.)_
 - [@nickpascucci](https://github.com/nickpascucci/)
 - [@karlicoss](https://github.com/karlicoss/)
 - [@elidhu](https://github.com/elidhu/)
+- [@shanecelis](https://github.com/shanecelis)
 
 ## Future Work
 
