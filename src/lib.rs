@@ -73,6 +73,7 @@ pub struct Fragment {
     pub id: String,
     pub file: String,
     pub line: usize,
+    #[serde(rename = "lastline")]
     pub last_line: usize,
     pub col: usize,
 }
@@ -738,6 +739,31 @@ def main():
             fragments[0].last_line, 7,
             "Unexpected last line {:?}",
             fragments[0].last_line
+        );
+    }
+
+    #[test]
+    fn test_fragment_json_uses_lastline() {
+        let fragment = Fragment {
+            body: String::from("body"),
+            id: String::from("fragment-id"),
+            file: String::from("test.py"),
+            line: 2,
+            last_line: 4,
+            col: 0,
+        };
+
+        let json = serde_json::to_value(&fragment).expect("Expected Fragment to serialize");
+
+        assert!(
+            json.get("lastline").is_some(),
+            "Expected JSON to contain 'lastline', got {}",
+            json
+        );
+        assert!(
+            json.get("last_line").is_none(),
+            "Expected JSON not to contain 'last_line', got {}",
+            json
         );
     }
 
